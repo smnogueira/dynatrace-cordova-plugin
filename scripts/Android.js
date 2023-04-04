@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeGradleConfig = exports.instrumentAndroidPlatform = exports.getGradleApplyBuildScript = exports.getGradleApplyDynatraceScript = void 0;
 var path_1 = require("path");
+var fs_1 = require("fs");
 var FileHelper_1 = require("./helpers/FileHelper");
 var Logger_1 = require("./logger/Logger");
 var PathHelper_1 = require("./helpers/PathHelper");
@@ -14,11 +15,15 @@ var getGradleApplyBuildScript = function () {
 };
 exports.getGradleApplyBuildScript = getGradleApplyBuildScript;
 var instrumentAndroidPlatform = function (pathToGradle, remove) {
-    var path = (0, FileHelper_1.checkIfFileExistsSync)(pathToGradle);
-    if (!path.endsWith('.gradle')) {
+    if ((0, fs_1.existsSync)(pathToGradle)) {
+        if (!pathToGradle.endsWith('.gradle')) {
+            throw new Error("Can't find .gradle file. gradle path must also include the gradle file!");
+        }
+        changeCordovaBuildGradleFile(pathToGradle, remove);
+    }
+    else {
         throw new Error("Can't find .gradle file. gradle path must also include the gradle file!");
     }
-    changeCordovaBuildGradleFile(path, remove);
 };
 exports.instrumentAndroidPlatform = instrumentAndroidPlatform;
 var changeCordovaBuildGradleFile = function (pathToGradle, remove) {

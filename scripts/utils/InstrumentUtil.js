@@ -27,13 +27,12 @@ var setCliBuildArgs = function (process) {
 exports.setCliBuildArgs = setCliBuildArgs;
 var setBuildProperties = function (argv) {
     var buildProperties = {};
-    var configJson;
     buildProperties.isCapacitor = (0, PathHelper_1.isCapacitorApp)();
     buildProperties.pathToConfig = (0, PathHelper_1.getConfigFilePath)();
     if (argv.config !== undefined) {
         buildProperties.pathToConfig = argv.config;
     }
-    configJson = new ConfigurationReader_1.ConfigurationReader().readConfiguration(buildProperties.pathToConfig);
+    var configJson = new ConfigurationReader_1.ConfigurationReader().readConfiguration(buildProperties.pathToConfig);
     if (argv.gradle !== undefined) {
         buildProperties.pathToGradle = (0, path_1.resolve)(argv.gradle);
         buildProperties.androidAvailable = (0, FileHelper_1.isPlatformAvailable)(buildProperties.pathToGradle, 'Android');

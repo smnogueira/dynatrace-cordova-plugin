@@ -64,6 +64,9 @@ var ConfigurationReader = (function () {
             var javascriptConfigurationBuilder = new JavaScriptAgentConfigurationBuilder_1.JavaScriptAgentConfigurationBuilder(rawConfig.js.url);
             javascriptConfigurationBuilder.setAgentMode(rawConfig.js.mode);
             javascriptConfigurationBuilder.setAnyCertificateAllowed(Boolean(rawConfig.js.allowanycert));
+            if (rawConfig.js.htmlFiles !== undefined) {
+                javascriptConfigurationBuilder.setHtmlFiles(rawConfig.js.htmlFiles);
+            }
             return javascriptConfigurationBuilder.build();
         }
         return undefined;
