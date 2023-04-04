@@ -5,7 +5,7 @@ It gives you the ability to use the Dynatrace instrumentation in your hybrid app
 
 ## Dynatrace Cordova plugin version
 
-This is based on @dynatrace/cordova-plugin version 1.259.2.
+This is based on @dynatrace/cordova-plugin version 1.261.3.
 
 ## Agent Versions
 
